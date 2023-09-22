@@ -1,0 +1,59 @@
+{% include "base.html"%}
+
+{% block content %}
+
+<main>
+
+    <div class="container">
+        <form method="POST" class="d-flex justify-content-between">
+            <div style="width:35%" class="input-group mb-2 shadow-sm mt-3 mb-3">
+                <button type="search" class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></button>
+                <input id="searchField" type="text" class="form-control" placeholder="Search for a country..." aria-label="Search"
+                    aria-describedby="search-addon1" />
+
+
+                </span>
+            </div>
+
+            <div style="width:35%" class="input-group mb-2 shadow-sm mt-3 mb-3">
+
+                <select class="form-select" name="continent_filter">
+                    <option value="">Filter by Region</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Americas">Americas</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
+            </div>
+        </form>
+
+        <article>
+            <div>
+                <div class="row">
+                    {% for country in countries %}
+                    <div data-country class="col-lg-3 col-md-4 col-sm-6 col-12">
+                        <a href="/country/{{country['name']['common']}}">
+                            <div class="card mb-5">
+                                <img style="height:250px" src="{{country['flags']['png']}}" class="card-img-top"
+                                    alt="{{country['flags']['alt']}}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{country['name']['common']}}</h5>
+                                    <p class="card-text">Population: {{country['population']}} </p>
+                                    <p class="card-text">Region: {{country['region']}} </p>
+                                    {% if country['capital'] is defined %}
+                                    <p class="card-text">Capital: {{country['capital'][0]}}</p>
+                                    {% else %}
+                                    <p class="card-text">Capital: ?</p>
+                                    {% endif %}
+                                </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                </a>
+        </article>
+    </div>
+</main>
+
+{% endblock %}

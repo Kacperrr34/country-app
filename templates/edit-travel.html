@@ -1,0 +1,56 @@
+{% include "base.html"%}
+
+{% block content %}
+
+<!-- 
+tytul, opis, data rozpoczecia, data powrotu, cena, kraj
+title = request.form.get("travel_title")
+desc = request.form.get("travel_desc")
+start = request.form.get("travel_start")
+end = request.form.get("travel_end")
+cost = request.form.get("travel_cost")
+country = request.form.get("travel_country") -->
+
+<div>
+
+    <h1>Edit travel</h1>
+
+    <form method="POST" action="/api/edit-travel">
+
+        <input name="id_to_edit" value="{{travel['_id']}}" type="hidden">
+        <div class="form-group col-md-3 mx-auto">
+        <label for="formGroupExampleInput">Travel name:</label>
+        <input value="{{travel['title']}}" required type="text" class="form-control" id="formGroupExampleInput" name="travel_title">
+        <br>
+        <label for="formGroupExampleInput">Description:</label>
+        <textarea minlength="10" type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" name="travel_desc">
+{{travel['desc']}}
+        </textarea>
+        <br>
+        <label for="formGroupExampleInput">Starting date:</label>
+        <input value="{{travel['start']}}" required type="date" class="form-control" id="formGroupExampleInput" name="travel_start">
+        <br>
+        <label for="formGroupExampleInput">Return date:</label>
+        <input value="{{travel['end']}}" required type="date" class="form-control" id="formGroupExampleInput" name="travel_end">
+        <br>
+        <label for="formGroupExampleInput">Travel cost:</label>
+        <input value="{{travel['cost']}}" required type="number" class="form-control" id="formGroupExampleInput" name="travel_cost">
+        <br>
+        <label for="formGroupExampleInput">Destination country:</label>
+        <select required name="travel_country" id="formGroupExampleInput">
+            <option value="">Select a Country</option>
+            <option selected value="{{travel['country']}}">{{travel['country']}}</option>
+            {% for country_name in names %}
+                <option value="{{country_name}}">{{country_name}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit" class="mt-3 btn btn-outline-success">Edytuj</button>
+        </div>
+    
+    </form>
+    
+</div>
+
+
+{% endblock %}

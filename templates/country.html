@@ -1,0 +1,52 @@
+{% include "base.html"%}
+
+{% block content %}
+
+
+<a href="/" class="btn btn-primary active" role="button" aria-pressed="true">Back</a>
+
+<!-- <h2>{{country['common_name']}}</h2>
+            <p>{{country['native_name']}}</p>
+            <p>{{country['languages']}}</p>
+            <p>{{country['population']}}</p>
+            <p>{{country['region']}}</p>
+            <p>{{country['capital']}}</p>
+            <p>{{country['sub_region']}}</p>
+            <p>{{country['tld']}}</p>
+            <img style="height:200px" src="{{country['coat_of_arms']}}">
+            
+            {% for neighbour in neighbours%}
+            <a class="btn btn-secondary" href="/country/{{neighbour|lower}}">{{neighbour}}</a>
+         {% endfor %} -->
+
+<article class="row">
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img style="width:270px" src="{{country['coat_of_arms']}}">>
+            </div>
+                <div class="col">
+                    <h5 class="card-title">NAME: {{country['common_name']}}</h5>
+                    <p class="card-text">Native Name: {{country['native_name']}}</p>
+                    <p>Population: {{country['population']}}</p>
+                    <p>Region: {{country['region']}}</p>
+                </div>
+                <div class="col">
+                    <p>Language: {{country['languages']}}</p>
+                    <p>Capital: {{country['capital']}}</p>
+                    <p>Sub Region: {{country['sub_region']}}</p>
+                    <p>Main domain: {{country['tld']}}</p>
+                </div>
+                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+            </div>
+        </div>
+    <div>
+        {% for neighbour in neighbours%}
+        <a class="btn btn-dark" href="/country/{{neighbour|lower}}">{{neighbour}}</a>
+        {% endfor %}
+    </div>
+</article>
+{% endblock %}
+
+<!-- class="btn-group me-2" role="group" aria-label="Basic outlined example" -->
+
